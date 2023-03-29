@@ -18,12 +18,13 @@ public class Main1App {
 
 		// Insertar datos en la tabla
 		String columnas = "codigo, nombre";
-		String values = "(1, 'Sony'), (2, 'Creative Labs'),(3, 'Hewlett-Packard'),(4,'Iomega'),(5,'Fujitsu'),(6,'Winchester')";
-		dbc.insertData("ta_18_ej1", nombreTabla, columnas, values);
+		String values = "2, 'Creative Labs'";
+
+//		dbc.insertData("ta_18_ej1", nombreTabla, columnas, values);
 
 		// Eliminar datos en la tabla
-		dbc.getValues("ta_18_ej1", "fabricantes");
-		dbc.deleteRecord("ta_18ej1.fabricantes", "codigo", "1");
+		dbc.getValues("ta_18_ej1", "fabricantes", columnas);
+		dbc.deleteRecord("ta_18_ej1.fabricantes", "codigo", "1");
 		dbc.closeConnection();
 		
 		
