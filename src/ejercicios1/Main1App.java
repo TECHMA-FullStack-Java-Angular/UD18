@@ -1,5 +1,6 @@
 package ejercicios1;
 import db.DbConection;
+import utilidades.Utls;
 
 public class Main1App {
 
@@ -7,8 +8,11 @@ public class Main1App {
 		// TODO Auto-generated method stub
 
 		DbConection dbc = new DbConection();
+		Utls ut = new Utls();
 		
 		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
+//		ut.abrirScanner();
+//		ut.crearDB();
 		dbc.createDB("ta_18_ej1");
 
 		// Crear una tabla en la BBDD
@@ -18,9 +22,9 @@ public class Main1App {
 
 		// Insertar datos en la tabla
 		String columnas = "codigo, nombre";
-		String values = "2, 'Creative Labs'";
+		String values = "6, 'ASUS'";
 
-//		dbc.insertData("ta_18_ej1", nombreTabla, columnas, values);
+		dbc.insertData("ta_18_ej1", nombreTabla, columnas, values);
 
 		// Eliminar datos en la tabla
 		dbc.getValues("ta_18_ej1", "fabricantes", columnas);
