@@ -11,14 +11,25 @@ import javax.swing.JOptionPane;
 public class dbConection {
 	 private Connection conexion;
 
-	    public static void main(String[] args) {
-	        dbConection dbc = new dbConection();
-	        dbc.connect("192.168.4.105:3306","remote","P@ssw0rd_Remote");
-	        dbc.createDB("Pedro_pintame");
-	        dbc.getValues("ud14_ej_7", "despachos");
-	        dbc.deleteRecord("ud14_ej_7.director","nombre_apellidos","Paula Sousa");
-	        dbc.closeConnection();
-	    }
+//	    public static void main(String[] args) {
+//	        dbConection dbc = new dbConection();
+//	        dbc.connect("192.168.1.153:3306","remote","Aa802000**");
+//	        dbc.createDB("Pedro_pintame");
+//	        
+//	     // Crear una tabla en la base de datos Pedro_pintame
+//	        String tableName = "mi_tabla";
+//	        String tableColumns = "id INT PRIMARY KEY AUTO_INCREMENT, nombre VARCHAR(50), apellido VARCHAR(50), edad INT";
+//	        dbc.createTable("Pedro_pintame", tableName, tableColumns);
+//	        
+//	        // Insertar datos en la tabla mi_tabla
+//	        String columns = "nombre, apellido, edad";
+//	        String values = "'Juan', 'Pérez', 30";
+//	        dbc.insertData("Pedro_pintame", tableName, columns, values);
+//	        
+//	        dbc.getValues("ta14_ejercicio7", "despachos");
+//	        dbc.deleteRecord("ta14_ejercicio7.directores","nom_apels","Juan Pérez");
+//	        dbc.closeConnection();
+//	    }
 
 	    public void connect(String IP,String user,String password) {
 	        try {
@@ -58,7 +69,43 @@ public class dbConection {
 	    	}
 	    }
 	    
+	    // Método para crear una tabla en una base de datos
+	    public void createTable(String nombreBBDD, String nombreTabla, String tablaColum) {
+	        try {
+	            String queryDb = "USE " + nombreBBDD + ";";
+	            Statement stdb = conexion.createStatement();
+	            stdb.executeUpdate(queryDb);
+
+	            String query = "CREATE TABLE IF NOT EXISTS " + nombreTabla + " (" + tablaColum + ");";
+	            Statement st = conexion.createStatement();
+	            st.executeUpdate(query);
+
+	            JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + nombreTabla + " correctamente");
+	        } catch (SQLException ex) {
+	            Logger.getLogger(dbConection.class.getName()).log(Level.SEVERE, null, ex);
+	            JOptionPane.showMessageDialog(null, "Error creando la tabla " + nombreTabla);
+	        }
+	    }    
 	    
+	 // Método para insertar datos en una tabla
+	    public void insertData(String dbName, String tableName, String columns, String values) {
+	        try {
+	            String queryDb = "USE " + dbName + ";";
+	            Statement stdb = conexion.createStatement();
+	            stdb.executeUpdate(queryDb);
+
+	            String query = "INSERT INTO " + tableName + " (" + columns + ") VALUES (" + values + ");";
+	            Statement st = conexion.createStatement();
+	            st.executeUpdate(query);
+
+	            JOptionPane.showMessageDialog(null, "Datos insertados correctamente en la tabla " + tableName);
+	        } catch (SQLException ex) {
+	            Logger.getLogger(dbConection.class.getName()).log(Level.SEVERE, null, ex);
+	            JOptionPane.showMessageDialog(null, "Error insertando datos en la tabla " + tableName);
+	        }
+	    }
+
+	 
 	    //METODO QUE OBTIENE VALORES MYSQL
 	    public void getValues(String db, String table_name) {
 	    	
