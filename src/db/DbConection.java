@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-public class dbConection {
+public class DbConection {
 	 private Connection conexion;
 
 //	    public static void main(String[] args) {
@@ -48,7 +48,7 @@ public class dbConection {
 	            conexion.close();
 	            JOptionPane.showMessageDialog(null, "Se ha finalizado la conexion con el servidor");
 	        } catch (SQLException ex) {
-	            Logger.getLogger(dbConection.class.getName()).log(Level.SEVERE, null, ex);
+	            Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
 	        }
 	    }
 	    public void createDB(String dbName)
@@ -56,16 +56,16 @@ public class dbConection {
 	    	
 	    	try
 	    	{
-	    		String kuery="CREATE DATABASE IF NOT EXISTS "+dbName+" ;";
+	    		String kuery=" CREATE DATABASE IF NOT EXISTS "+dbName+" ;";
 	    		Statement st=conexion.createStatement();
-	    		System.out.println(kuery);
+//	    		System.out.println(kuery);
 	    		st.executeUpdate(kuery);
-	    		System.out.println("Ey que llego");
+//	    		System.out.println("Ey que llego");
 	    		JOptionPane.showMessageDialog(null,"Se ha creado la base de datos"+dbName+" correctamente");
 	    	}
 	    	catch(SQLException ex)
 	    	{
-	    		Logger.getLogger(dbConection.class.getName()).log(Level.SEVERE,null,ex);
+	    		Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE,null,ex);
 	    	}
 	    }
 	    
@@ -79,10 +79,11 @@ public class dbConection {
 	            String query = "CREATE TABLE IF NOT EXISTS " + nombreTabla + " (" + tablaColum + ");";
 	            Statement st = conexion.createStatement();
 	            st.executeUpdate(query);
+	            System.out.println("\nSe ha creado la tabla " + nombreTabla + " correctamente");
 
-	            JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + nombreTabla + " correctamente");
+//	            JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + nombreTabla + " correctamente");
 	        } catch (SQLException ex) {
-	            Logger.getLogger(dbConection.class.getName()).log(Level.SEVERE, null, ex);
+	            Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
 	            JOptionPane.showMessageDialog(null, "Error creando la tabla " + nombreTabla);
 	        }
 	    }    
@@ -97,17 +98,19 @@ public class dbConection {
 	            String query = "INSERT INTO " + tableName + " (" + columns + ") VALUES (" + values + ");";
 	            Statement st = conexion.createStatement();
 	            st.executeUpdate(query);
-
-	            JOptionPane.showMessageDialog(null, "Datos insertados correctamente en la tabla " + tableName);
+	            System.out.println("Datos insertados correctamente en la tabla " + tableName);
+//	            JOptionPane.showMessageDialog(null, "Datos insertados correctamente en la tabla " + tableName);
 	        } catch (SQLException ex) {
-	            Logger.getLogger(dbConection.class.getName()).log(Level.SEVERE, null, ex);
+	            Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
 	            JOptionPane.showMessageDialog(null, "Error insertando datos en la tabla " + tableName);
 	        }
 	    }
 
 	 
 	    //METODO QUE OBTIENE VALORES MYSQL
-	    public void getValues(String db, String table_name) {
+	    public void getValues(String db, String table_name, String columnas) {
+	    	String[] columna = columnas.split(",");
+	    	
 	    	
 	    	try {
 	    		String queryDb = "USE " +db+";";
@@ -119,9 +122,17 @@ public class dbConection {
 	    		java.sql.ResultSet resultSet;
 	    		resultSet = st.executeQuery(query);
 	    		
+	    		System.out.println("Has creado la tabla "+table_name+" con los siguientes valores:");
 	    		while(resultSet.next()) {
-	    			System.out.println("Columna 1: "+ resultSet.getString("numero"));
-	    			System.out.println("Columna 2: "+ resultSet.getString("capacidad"));
+	    			
+	    			
+	    			 for (String valor : columna) {
+	    				 System.out.println(resultSet.getString(valor.trim()));
+	    		        }
+	    			
+	    			
+	    			
+	    			
 	    		}
 	    		
 	    	
