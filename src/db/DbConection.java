@@ -79,8 +79,9 @@ public class DbConection {
 	            String query = "CREATE TABLE IF NOT EXISTS " + nombreTabla + " (" + tablaColum + ");";
 	            Statement st = conexion.createStatement();
 	            st.executeUpdate(query);
+	            System.out.println("\nSe ha creado la tabla " + nombreTabla + " correctamente");
 
-	            JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + nombreTabla + " correctamente");
+//	            JOptionPane.showMessageDialog(null, "Se ha creado la tabla " + nombreTabla + " correctamente");
 	        } catch (SQLException ex) {
 	            Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
 	            JOptionPane.showMessageDialog(null, "Error creando la tabla " + nombreTabla);
@@ -97,8 +98,8 @@ public class DbConection {
 	            String query = "INSERT INTO " + tableName + " (" + columns + ") VALUES (" + values + ");";
 	            Statement st = conexion.createStatement();
 	            st.executeUpdate(query);
-
-	            JOptionPane.showMessageDialog(null, "Datos insertados correctamente en la tabla " + tableName);
+	            System.out.println("Datos insertados correctamente en la tabla " + tableName);
+//	            JOptionPane.showMessageDialog(null, "Datos insertados correctamente en la tabla " + tableName);
 	        } catch (SQLException ex) {
 	            Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
 	            JOptionPane.showMessageDialog(null, "Error insertando datos en la tabla " + tableName);
@@ -121,7 +122,9 @@ public class DbConection {
 	    		java.sql.ResultSet resultSet;
 	    		resultSet = st.executeQuery(query);
 	    		
+	    		System.out.println("Has creado la tabla "+table_name+" con los siguientes valores:");
 	    		while(resultSet.next()) {
+	    			
 	    			
 	    			 for (String valor : columna) {
 	    				 System.out.println(resultSet.getString(valor.trim()));
