@@ -2,39 +2,38 @@ package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
+import javax.swing.JOptionPane;
 
 public class dbConection {
-	public static Connection conectorDeDB()
-	{
-		try 
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conexion= DriverManager.getConnection("jdbc:mysql://192.168.4.66:3306","remote","P@ssw0rd_Remote");
-			System.out.print("Server Connected");
-			return conexion;
-			
-		}catch(SQLException | ClassNotFoundException ex)
-		{
-			System.out.print("No se ha podido conectar con mi base de datos");
-			System.out.print(ex);
-		}
-		return null;
-	}
-	public static void closeConnection(Connection conection)
-	{
-		try 
-		{
-			conection.close();
-			System.out.println("Connection ended");
-		}
-		catch(SQLException ex)
-		{
-			System.out.println("Connection error on close");
-			System.out.println(ex);
-		}
-	}
-	
+    private Connection conexion;
 
+    public static void main(String[] args) {
+        dbConection dbc = new dbConection();
+        dbc.connect();
+        dbc.closeConnection();
+    }
+
+    public void connect() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexion = DriverManager.getConnection("jdbc:mysql://192.168.1.153:3306/ud14_ejercicio3?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "remote", "Aa802000**");
+            System.out.print("Server Connected");
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.print("No se ha podido conectar con mi base de datos");
+            System.out.print(ex);
+        }
+    }
+
+    public void closeConnection() {
+        try {
+            conexion.close();
+            JOptionPane.showMessageDialog(null, "Se ha finalizado la conexion con el servidor");
+        } catch (SQLException ex) {
+            Logger.getLogger(dbConection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
+
