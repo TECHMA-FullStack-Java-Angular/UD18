@@ -12,14 +12,14 @@ public class dbConection {
 
     public static void main(String[] args) {
         dbConection dbc = new dbConection();
-        dbc.connect("192.168.1.128:3306");
+        dbc.connect("192.168.4.105:3306");
         dbc.closeConnection();
     }
 
     public void connect(String IP) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://"+IP+" ", "remote", "por.java12DABA");
+            conexion = DriverManager.getConnection("jdbc:mysql://"+IP+" ", "remote", "P@ssw0rd_Remote");
             System.out.print("Server Connected");
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.print("No se ha podido conectar con mi base de datos");
