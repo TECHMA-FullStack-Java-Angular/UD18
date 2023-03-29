@@ -12,19 +12,20 @@ public class dbConection {
 
     public static void main(String[] args) {
         dbConection dbc = new dbConection();
-        dbc.connect();
+        dbc.connect("192.168.1.128:3306");
         dbc.closeConnection();
     }
 
-    public void connect() {
+    public void connect(String IP) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://192.168.1.153:3306/ud14_ejercicio3?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "remote", "Aa802000**");
+            conexion = DriverManager.getConnection("jdbc:mysql://"+IP+" ", "remote", "por.java12DABA");
             System.out.print("Server Connected");
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.print("No se ha podido conectar con mi base de datos");
             System.out.print(ex);
         }
+   
     }
 
     public void closeConnection() {
