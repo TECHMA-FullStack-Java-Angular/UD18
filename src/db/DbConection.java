@@ -58,9 +58,9 @@ public class DbConection {
 	    	{
 	    		String kuery=" CREATE DATABASE IF NOT EXISTS "+dbName+" ;";
 	    		Statement st=conexion.createStatement();
-	    		System.out.println(kuery);
+//	    		System.out.println(kuery);
 	    		st.executeUpdate(kuery);
-	    		System.out.println("Ey que llego");
+//	    		System.out.println("Ey que llego");
 	    		JOptionPane.showMessageDialog(null,"Se ha creado la base de datos"+dbName+" correctamente");
 	    	}
 	    	catch(SQLException ex)
@@ -107,7 +107,9 @@ public class DbConection {
 
 	 
 	    //METODO QUE OBTIENE VALORES MYSQL
-	    public void getValues(String db, String table_name) {
+	    public void getValues(String db, String table_name, String columnas) {
+	    	String[] columna = columnas.split(",");
+	    	
 	    	
 	    	try {
 	    		String queryDb = "USE " +db+";";
@@ -120,8 +122,14 @@ public class DbConection {
 	    		resultSet = st.executeQuery(query);
 	    		
 	    		while(resultSet.next()) {
-	    			System.out.println("Columna 1: "+ resultSet.getString("numero"));
-	    			System.out.println("Columna 2: "+ resultSet.getString("capacidad"));
+	    			
+	    			 for (String valor : columna) {
+	    				 System.out.println(resultSet.getString(valor.trim()));
+	    		        }
+	    			
+	    			
+	    			
+	    			
 	    		}
 	    		
 	    	
