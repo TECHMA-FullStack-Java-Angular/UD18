@@ -46,16 +46,16 @@ public class DbConection {
 			Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
-	//Metodo que se asegura que se esta usando la BBDD
+
+	// Metodo que se asegura que se esta usando la BBDD
 	public void selectDB(String dbName) {
-	    try {
-	        String queryDb = "USE " + dbName + ";";
-	        Statement stdb = conexion.createStatement();
-	        stdb.executeUpdate(queryDb);
-	    } catch (SQLException ex) {
-	        Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
-	    }
+		try {
+			String queryDb = "USE " + dbName + ";";
+			Statement stdb = conexion.createStatement();
+			stdb.executeUpdate(queryDb);
+		} catch (SQLException ex) {
+			Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	// Método para crear una tabla en una base de datos
@@ -94,29 +94,40 @@ public class DbConection {
 		}
 	}
 
-	// METODO QUE OBTIENE VALORES MYSQL
-	public void getValues(String db, String table_name) {
-
-		try {
-			String queryDb = "USE " + db + ";";
-			Statement stdb = conexion.createStatement();
-			stdb.executeUpdate(queryDb);
-
-			String query = "SELECT * FROM " + table_name;
-			Statement st = conexion.createStatement();
-			java.sql.ResultSet resultSet;
-			resultSet = st.executeQuery(query);
-
-			while (resultSet.next()) {
-				System.out.println("Columna 1: " + resultSet.getString("numero"));
-				System.out.println("Columna 2: " + resultSet.getString("capacidad"));
-			}
-
-		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
-			System.out.println("Error en la adquisicion de datos");
-		}
-	}
+    //METODO QUE OBTIENE VALORES MYSQL
+    public void getValues(String db, String table_name, String columnas) {
+    	String[] columna = columnas.split(",");
+    	
+    	
+    	try {
+    		String queryDb = "USE " +db+";";
+    		Statement stdb= conexion.createStatement();
+    		stdb.executeUpdate(queryDb);
+    		
+    		String query = "SELECT * FROM " + table_name;
+    		Statement st= conexion.createStatement();
+    		java.sql.ResultSet resultSet;
+    		resultSet = st.executeQuery(query);
+    		
+    		System.out.println("Has creado la tabla "+table_name+" con los siguientes valores:");
+    		while(resultSet.next()) {
+    			
+    			
+    			 for (String valor : columna) {
+    				 System.out.println(resultSet.getString(valor.trim()));
+    		        }
+    			
+    			
+    			
+    			
+    		}
+    		
+    	
+    	}catch(SQLException ex) {
+    		System.out.println(ex.getMessage());
+    		System.out.println("Error en la adquisicion de datos");
+    	}
+    }
 
 	// METODO QUE ELIMINA VALORES DE NUESTRA BASE DE DATOS
 	public void deleteRecord(String table_name_columna, String columna, String campo) {
