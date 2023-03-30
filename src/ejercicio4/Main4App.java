@@ -51,8 +51,8 @@ public class Main4App {
 				}
 
 		// Eliminar datos en la tabla
-		dbc.getValues("ta_18_ej4", "peliculas", columnas);
-		dbc.getValues("ta_18_ej4", "salas", columnas2);
+		dbc.getValues("ta_18_ej4", "peliculas");
+		dbc.getValues("ta_18_ej4", "salas");
 		dbc.deleteRecord("ta_18_ej4.salas", "codigo", "1");
 		dbc.closeConnection();
 		

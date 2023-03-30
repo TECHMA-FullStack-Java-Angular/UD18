@@ -46,16 +46,16 @@ public class DbConection {
 			Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
-	//Metodo que se asegura que se esta usando la BBDD
+
+	// Metodo que se asegura que se esta usando la BBDD
 	public void selectDB(String dbName) {
-	    try {
-	        String queryDb = "USE " + dbName + ";";
-	        Statement stdb = conexion.createStatement();
-	        stdb.executeUpdate(queryDb);
-	    } catch (SQLException ex) {
-	        Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
-	    }
+		try {
+			String queryDb = "USE " + dbName + ";";
+			Statement stdb = conexion.createStatement();
+			stdb.executeUpdate(queryDb);
+		} catch (SQLException ex) {
+			Logger.getLogger(DbConection.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	// Método para crear una tabla en una base de datos
