@@ -13,7 +13,7 @@ public class Main3App {
 		String nombreBD = "ta14_ejercicio5";
 
 		// Conetamos con la BBDD
-		dbc.connect("192.168.1.153:3306", "remote", "pass");
+		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
 
 		// Elimina y crea la base de datos nombreBD
 		dbc.createDB(nombreBD);
