@@ -8,11 +8,10 @@ public class Main4App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		DbConection dbc = new DbConection();
-		Utls ut = new Utls();
+		
 		
 		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
-//		ut.abrirScanner();
-//		ut.crearDB();
+
 		dbc.createDB("ta_18_ej4");
 
 		// Crear tablas en la BBDD

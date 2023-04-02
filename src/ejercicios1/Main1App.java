@@ -10,11 +10,10 @@ public class Main1App {
 		// TODO Auto-generated method stub
 
 		DbConection dbc = new DbConection();
-		Utls ut = new Utls();
+		
 
 		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
-//		ut.abrirScanner();
-//		ut.crearDB();
+
 		dbc.createDB("ta_18_ej1");
 
 //		// Crear una tabla en la BBDD
@@ -31,7 +30,7 @@ public class Main1App {
 			dbc.insertData("ta_18_ej1", nombreTabla, columnas, valor);
 		}
 
-//		dbc.insertData("ta_18_ej1", nombreTabla, columnas, values);
+
 
 		//Crear tabla articulos
 		String nombreTabla2 = "articulos";
@@ -51,8 +50,8 @@ public class Main1App {
 		}
 
 		// Eliminar datos en la tabla
-//		dbc.getValues("ta_18_ej1", "fabricantes", columnas);
-//		dbc.deleteRecord("ta_18_ej1.fabricantes", "codigo", "6");
+		dbc.getValues("ta_18_ej1", "fabricantes", columnas);
+		dbc.deleteRecord("ta_18_ej1.articulos", "codigo", "6");
 		dbc.closeConnection();
 
 	}
