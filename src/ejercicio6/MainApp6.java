@@ -10,8 +10,6 @@ public class MainApp6 {
 		
 		
 		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
-//		ut.abrirScanner();
-//		ut.crearDB();
 		dbc.createDB("ta_18_ej6");
 
 		// Crear tablas en la BBDD
@@ -65,7 +63,7 @@ public class MainApp6 {
 				}
 
 
-		// Eliminar datos en la tabla
+		// Enseñar y Eliminar datos en la tabla
 		dbc.getValues("ta_18_ej6", "piezas", columnas1);
 		dbc.getValues("ta_18_ej6", "proveedores", columnas2);
 		dbc.deleteRecord("ta_18_ej6.piezas", "codigo", "1");

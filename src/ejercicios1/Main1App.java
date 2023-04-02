@@ -9,9 +9,11 @@ public class Main1App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		// Creamos el objeto dbc encargada de conectar con la BBDD
 		DbConection dbc = new DbConection();
 		
-
+		// Conectandose a la BBDD
+		// dbc.connect("192.168.1.153:3306", "remote", "Aa802000**");
 		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
 
 		dbc.createDB("ta_18_ej1");
@@ -30,9 +32,7 @@ public class Main1App {
 			dbc.insertData("ta_18_ej1", nombreTabla, columnas, valor);
 		}
 
-
-
-		//Crear tabla articulos
+		// Crear tabla articulos
 		String nombreTabla2 = "articulos";
 		String tablaColum2 = "codigo INT NOT NULL, nombre VARCHAR(255) NOT NULL, precio decimal(10,0) NOT NULL, "
 				+ "fabricante int NOT NULL, PRIMARY KEY(codigo), KEY fabricante (fabricante), "
@@ -42,14 +42,14 @@ public class Main1App {
 		// Insertar datos en la tabla
 		String columnas2 = "codigo, nombre, precio, fabricante";
 
-		String[] totalValues2 = { "1,'Hard drive',240,5","2,'Memory',120,6","3,'ZIP drive',150,4",
-				"4,'Floppy disk',5,6","5,'Monitor',240,1","6,'DVD drive',180,2","7,'CD drive',90,2",
-				"8,'Printer',270,3","9,'Toner cartridge',66,3","10,'DVD burner',180,2" };
+		String[] totalValues2 = { "1,'Hard drive',240,5", "2,'Memory',120,6", "3,'ZIP drive',150,4",
+				"4,'Floppy disk',5,6", "5,'Monitor',240,1", "6,'DVD drive',180,2", "7,'CD drive',90,2",
+				"8,'Printer',270,3", "9,'Toner cartridge',66,3", "10,'DVD burner',180,2" };
 		for (String valor2 : totalValues2) {
 			dbc.insertData("ta_18_ej1", nombreTabla2, columnas2, valor2);
 		}
 
-		// Eliminar datos en la tabla
+		// Enseñar y Eliminar datos en la tabla
 		dbc.getValues("ta_18_ej1", "fabricantes", columnas);
 		dbc.deleteRecord("ta_18_ej1.articulos", "codigo", "6");
 		dbc.closeConnection();

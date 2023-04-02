@@ -10,12 +10,13 @@ public class Main5App {
 		DbConection dbc = new DbConection();
 
 		// Guardamos el nombre de la BBDD
-		String nombreBD = "ta14_ejercicio7";
+		String nombreBD = "ta18_ejercicio5";
 
 		// Conectandose a la BBDD
-		dbc.connect("192.168.1.153:3306", "remote", "Aa802000**");
+		// dbc.connect("192.168.1.153:3306", "remote", "Aa802000**");
+		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
 
-		// Elimina y crea la base de datos ud14_ejercicio4
+		// Elimina y crea la base de datos ta18_ejercicio5
 		dbc.createDB(nombreBD);
 
 		// Selecciona BBDD
@@ -40,13 +41,17 @@ public class Main5App {
 		}
 
 		// Insertar insertar registros en la tabla directores
-		columnas = "dni, nom_apels, dni_jefe, despacho";
-		valuesArray = new String[] { "'12345678', 'Alberto del Pozo', NULL, 1", "'23456789', 'Tamyle Morales', '12345678', 2",
-				"'34567890', 'Carlos Crespo', '12345678', 3" };
+		String columnas2 = "dni, nom_apels, dni_jefe, despacho";
+		valuesArray = new String[] { "'12345678', 'Alberto del Pozo', NULL, 1",
+				"'23456789', 'Tamyle Morales', '12345678', 2", "'34567890', 'Carlos Crespo', '12345678', 3" };
 
 		for (String values : valuesArray) {
-			dbc.insertData(nombreBD, "directores", columnas, values);
+			dbc.insertData(nombreBD, "directores", columnas2, values);
 		}
+
+		// Enseñar y Eliminar datos en la tabla
+		dbc.getValues("ta18_ejercicio5", "despachos", columnas);
+		dbc.deleteRecord("ta18_ejercicio5.despachos", "numero", "1");
 
 		// Cerrar conexion
 		dbc.closeConnection();

@@ -10,7 +10,7 @@ public class Main3App {
 		DbConection dbc = new DbConection();
 
 		// Guardamos el nombre de la BBDD
-		String nombreBD = "ta14_ejercicio5";
+		String nombreBD = "ta18_ejercicio3";
 
 		// Conetamos con la BBDD
 		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
@@ -49,6 +49,10 @@ public class Main3App {
 		dbc.insertData(nombreBD, tablaCajas, columCajas, values2_1);
 		dbc.insertData(nombreBD, tablaCajas, columCajas, values2_2);
 		dbc.insertData(nombreBD, tablaCajas, columCajas, values2_3);
+
+		// Enseñar y Eliminar datos en la tabla
+		dbc.getValues("ta18_ejercicio3", "almacenes", columAlmacenes);
+		dbc.deleteRecord("ta18_ejercicio3.almacenes", "codigo", "1");
 
 		// Cerrar conexion
 		dbc.closeConnection();

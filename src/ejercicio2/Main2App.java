@@ -11,7 +11,7 @@ public class Main2App {
 		// Conéctate a la base de datos
 		dbc.connect("192.168.4.105:3306", "remote", "P@ssw0rd_Remote");
 
-		// Elimina y crea la base de datos ud14_ejercicio4
+		// Elimina y crea la base de datos ud18_ejercicio2
 		dbc.createDB("ud18_ejercicio2");
 
 		// Selecciona la base de datos
@@ -42,7 +42,7 @@ public class Main2App {
 		String values2_2 = "'23456789', 'Esther', 'Cruz', 2";
 		dbc.insertData("ud18_ejercicio2", tableName2, columns2, values2_1);
 		dbc.insertData("ud18_ejercicio2", tableName2, columns2, values2_2);
-		
+
 		// Enseñar y Eliminar datos en la tabla
 		dbc.getValues("ud18_ejercicio2", "departamentos", columns1);
 		dbc.deleteRecord("ud18_ejercicio2.departamentos", "cod_departamento", "1");
