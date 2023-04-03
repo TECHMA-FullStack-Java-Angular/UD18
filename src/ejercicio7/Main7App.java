@@ -44,18 +44,18 @@ public class Main7App {
 		String columns2 = "id, nombre, horas";
 		String values2_1 = "'ARPM','Extraccion',23 ";
 		String values2_2 = "'RPJA', 'Especiment 12', 2";
-		dbc.insertData("ud18_ejercicio2", tableName2, columns2, values2_1);
-		dbc.insertData("ud18_ejercicio2", tableName2, columns2, values2_2);
+		dbc.insertData("ud18_ejercicio7", tableName2, columns2, values2_1);
+		dbc.insertData("ud18_ejercicio7", tableName2, columns2, values2_2);
 		
 		String columns3 = "dni, id";
 		String values3_1 = "'37462813', 'RPJA'";
 		String values3_2 = "'63654810', 'ARPM'";
-		dbc.insertData("ud18_ejercicio2", tableName3, columns3, values3_1);
-		dbc.insertData("ud18_ejercicio2", tableName3, columns3, values3_2);
+		dbc.insertData("ud18_ejercicio7", tableName3, columns3, values3_1);
+		dbc.insertData("ud18_ejercicio7", tableName3, columns3, values3_2);
 
 		// Enseñar y Eliminar datos en la tabla
-		dbc.getValues("ud18_ejercicio2", "cientificos", columns1);
-		dbc.deleteRecord("ud18_ejercicio2.cientificos", "dni", "34589812");
+		dbc.getValues("ud18_ejercicio7", "cientificos", columns1);
+		dbc.deleteRecord("ud18_ejercicio7.cientificos", "dni", "34589812");
 
 		// Cerrar conexión
 		dbc.closeConnection();
